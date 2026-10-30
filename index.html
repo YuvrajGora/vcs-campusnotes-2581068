@@ -70,19 +70,38 @@
     const searchInput = document.getElementById("subjectSearch");
     const subjectCards = document.querySelectorAll(".subject-card");
 
+    // Create a message for searches with no results
+    const noResults = document.createElement("p");
+    noResults.id = "noResults";
+    noResults.textContent = "No subjects found";
+    noResults.hidden = true;
+
+    document.querySelector(".subjects").appendChild(noResults);
+
     searchInput.addEventListener("input", function () {
         const searchText = searchInput.value.toLowerCase().trim();
+        let matchCount = 0;
 
         subjectCards.forEach(function (card) {
             const subjectText = card.textContent.toLowerCase();
 
-            if (subjectText.includes(searchText)) {
-                card.style.display = "";
-            } else {
-                card.style.display = "none";
+            // Show all cards when search is empty
+            const isMatch =
+                searchText === "" || subjectText.includes(searchText);
+
+            // Show or hide each card
+            card.hidden = !isMatch;
+            card.style.display = isMatch ? "" : "none";
+
+            if (isMatch) {
+                matchCount++;
             }
         });
+
+        // Show message when no subjects match
+        noResults.hidden = matchCount !== 0;
     });
 </script>
+
 </body>
 </html>
