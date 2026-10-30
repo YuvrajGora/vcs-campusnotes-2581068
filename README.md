@@ -28,3 +28,7 @@ CampusNotes/
 ## Purpose
 
 This project is developed as part of the Version Control System (CSE25303) Assignment 2 to demonstrate Git and GitHub workflows.
+
+## Latest Update
+
+The project now includes a study motivation section to encourage students to stay organized and focused on their academic goals.
