@@ -72,3 +72,6 @@ footer {
     margin-top: 35px;
     color: #666;
 }
+.subject-card.hidden {
+    display: none;
+}

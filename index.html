@@ -29,16 +29,17 @@
         <section class="welcome">
             <h2>Study Smarter!</h2>
             <p>Keep your academic resources organized in one place.</p>
-            </section>
+        </section>
+
         <section class="subjects">
             <h2>My Subjects</h2>
 
-<input
-    type="search"
-    id="subjectSearch"
-    placeholder="Search subjects..."
-    aria-label="Search subjects"
->
+            <input
+                type="search"
+                id="subjectSearch"
+                placeholder="Search subjects..."
+                aria-label="Search subjects"
+            >
 
             <div class="subject-grid">
 
@@ -58,6 +59,8 @@
                 </article>
 
             </div>
+
+            <p id="noResults" hidden>No subjects found.</p>
         </section>
 
     </main>
@@ -66,42 +69,31 @@
         <p>CampusNotes &copy; 2026 | Made for students</p>
     </footer>
 
-<script>
-    const searchInput = document.getElementById("subjectSearch");
-    const subjectCards = document.querySelectorAll(".subject-card");
+    <script>
+        const searchInput = document.getElementById("subjectSearch");
+        const subjectCards = document.querySelectorAll(".subject-card");
+        const noResults = document.getElementById("noResults");
 
-    // Create a message for searches with no results
-    const noResults = document.createElement("p");
-    noResults.id = "noResults";
-    noResults.textContent = "No subjects found";
-    noResults.hidden = true;
+        searchInput.addEventListener("input", function () {
+            const searchText = searchInput.value.toLowerCase().trim();
+            let matchCount = 0;
 
-    document.querySelector(".subjects").appendChild(noResults);
+            subjectCards.forEach(function (card) {
+                const subjectText = card.textContent.toLowerCase();
 
-    searchInput.addEventListener("input", function () {
-        const searchText = searchInput.value.toLowerCase().trim();
-        let matchCount = 0;
+                const isMatch =
+                    searchText === "" || subjectText.includes(searchText);
 
-        subjectCards.forEach(function (card) {
-            const subjectText = card.textContent.toLowerCase();
+                card.classList.toggle("is-hidden", !isMatch);
 
-            // Show all cards when search is empty
-            const isMatch =
-                searchText === "" || subjectText.includes(searchText);
+                if (isMatch) {
+                    matchCount++;
+                }
+            });
 
-            // Show or hide each card
-            card.hidden = !isMatch;
-            card.style.display = isMatch ? "" : "none";
-
-            if (isMatch) {
-                matchCount++;
-            }
+            noResults.hidden = matchCount !== 0;
         });
-
-        // Show message when no subjects match
-        noResults.hidden = matchCount !== 0;
-    });
-</script>
+    </script>
 
 </body>
 </html>
