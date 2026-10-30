@@ -33,6 +33,13 @@
         <section class="subjects">
             <h2>My Subjects</h2>
 
+<input
+    type="search"
+    id="subjectSearch"
+    placeholder="Search subjects..."
+    aria-label="Search subjects"
+>
+
             <div class="subject-grid">
 
                 <article class="subject-card">
@@ -59,5 +66,23 @@
         <p>CampusNotes &copy; 2026 | Made for students</p>
     </footer>
 
+<script>
+    const searchInput = document.getElementById("subjectSearch");
+    const subjectCards = document.querySelectorAll(".subject-card");
+
+    searchInput.addEventListener("input", function () {
+        const searchText = searchInput.value.toLowerCase().trim();
+
+        subjectCards.forEach(function (card) {
+            const subjectText = card.textContent.toLowerCase();
+
+            if (subjectText.includes(searchText)) {
+                card.style.display = "";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    });
+</script>
 </body>
 </html>
