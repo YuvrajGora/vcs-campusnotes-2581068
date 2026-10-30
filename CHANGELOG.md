@@ -9,3 +9,4 @@ All notable changes to CampusNotes are documented here.
 - Introduced subject search functionality.
 - Improved subject search behaviour.
 - Added documentation improvements through community contributions.
+- Verified local Git hooks.
